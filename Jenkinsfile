@@ -22,17 +22,20 @@ node {
 
     // }
 
-    stage('SonarQube') {
-    environment {
-        scannerHome = tool 'SonarQube'
-    }
-    steps {
-        withSonarQubeEnv('SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner"
-        }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-    }
-}
+    stage("build & SonarQube analysis") {
+          node {
+              withSonarQubeEnv('SonarQube') {
+                 sh 'mvn clean package sonar:sonar'
+              }
+          }
+      }
+
+      stage("Quality Gate"){
+          timeout(time: 10, unit: 'MINUTES') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+      }
 }
