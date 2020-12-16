@@ -23,9 +23,12 @@ node {
     // }
 
     stage("build & SonarQube analysis") {
+        environment {
+        scannerHome = tool 'SonarQube'
+    }
           node {
               withSonarQubeEnv('SonarQube') {
-                 sh 'mvn clean package sonar:sonar'
+                 sh "${scannerHome}/bin/sonar-scanner"
               }
           }
       }
