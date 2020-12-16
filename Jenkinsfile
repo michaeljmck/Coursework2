@@ -1,5 +1,7 @@
 pipeline {
-    def app
+    environment {
+        app=''
+    }
     agent any
     stages {
         stage('Clone repository') {
