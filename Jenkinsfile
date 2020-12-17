@@ -17,7 +17,7 @@ pipeline {
                 }
             }
         }
-
+// comment to test jenkins detecting change
         stage('Push image') {
            steps {
                script {
