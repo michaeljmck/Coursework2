@@ -9,7 +9,7 @@ pipeline {
                 checkout scm
             }
         }
-
+/*
         stage('Build image') {
             steps {
                 script {
@@ -17,7 +17,7 @@ pipeline {
                 }
             }
         }
-// comment to test jenkins detecting change
+
         stage('Push image') {
            steps {
                script {
@@ -28,7 +28,7 @@ pipeline {
                 } 
             }
         }
-
+*/
         stage("SonarQube analysis") {
             environment {
                 scannerHome = tool 'SonarQube'
