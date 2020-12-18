@@ -1,0 +1,34 @@
+- name: Playbook for installing Kubectl
+  hosts: localhost
+  user: ubuntu
+  become: yes
+
+  vars:
+    myPath: /home/ubuntu/
+
+  tasks:
+  - name: 1. Update Package Manager
+    apt:
+      update_cache: yes
+
+  - name: 2. Install dependency packages
+    apt:
+      update_cache: yes
+      name: apt-transport-https
+
+  - name: 4. Get APT Key
+    shell:
+      cmd: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+  - name: 5. Add APT Repository
+    apt_repository:
+      repo: deb https://apt.kubernetes.io/ kubernetes-xenial main | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+
+  - name: 6. Update Package Manager
+    apt:
+      update_cache: yes
+
+  - name: 7. Install Kubectl
+    apt:
+      update_cache: yes
+      name: kubectl
