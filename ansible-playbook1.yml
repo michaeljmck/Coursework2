@@ -32,3 +32,21 @@
     apt:
       update_cache: yes
       name: kubectl
+
+  - name: 8. Install Minikube
+    shell:
+      cmd: curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+  - name: 9. Change File Permissions
+    file:
+      path: ./minikube
+      mode: '777'
+
+  - name: 10. Move Minikube
+    shell:
+      cmd: mv minikube /usr/local/bin/
+
+  - name: 11. Start Minikube
+    become: no
+    shell:
+      cmd: minikube start
