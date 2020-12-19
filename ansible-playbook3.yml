@@ -8,8 +8,8 @@
 
   tasks:
   - name: 1. Update Package Manager
-  apt:
-    update_cache: yes
+    apt:
+      update_cache: yes
 
   - name: 2. Create Deployment
     become: no
