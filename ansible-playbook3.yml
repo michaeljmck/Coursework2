@@ -14,7 +14,7 @@
   - name: 2. Create Deployment
     become: no
     shell:
-      cmd: kubectl create deployment devops_cw2 --image=michaeljmckenna/coursework2:1:0
+      cmd: kubectl create deployment devops_cw2 --image=michaeljmckenna/coursework2:1.0
 
   - name: 3. Create Service
     become: no
