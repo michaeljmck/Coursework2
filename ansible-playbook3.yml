@@ -1,0 +1,29 @@
+- name: Deploy application, create service, scale application
+  hosts: localhost
+  user: ubuntu
+  become: yes
+
+  vars:
+    myPath: "/home/ubuntu"
+
+  tasks:
+  - name: 1. Update Package Manager
+  apt:
+    update_cache: yes
+
+  - name: 2. Create Deployment
+    become: no
+    shell:
+      cmd: kubectl create deployment devops_cw2 --image=michaeljmckenna/coursework2:1:0
+
+  - name: 3. Create Service
+    become: no
+    shell:
+      cmd: kubectl expose deployment/devops_cw2 --"NodePort" --port 8080 --name np-service
+
+  - name: 4. Scale Deployments
+    become: no
+    shell:
+      cmd: kubctl scale deployments/devops_cw2 --replicas=4
+
+
