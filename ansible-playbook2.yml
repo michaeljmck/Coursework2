@@ -1,0 +1,31 @@
+- name: Playbook for installing Minikube
+  hosts: localhost
+  become: yes
+
+  vars:
+    myPath: /home/ubuntu/
+
+  tasks:
+  - name: 1. Update Package Manager
+    apt:
+      update_cache: yes
+
+  - name: 2. Install Minikube
+    shell:
+      cmd: curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+  - name: 3. Change File Permissions
+    file:
+      path: ./minikube
+      owner: ubuntu
+      group: ubuntu
+      mode: '777'
+
+  - name: 4. Move Minikube
+    shell:
+      cmd: sudo mv minikube /usr/local/bin/
+
+  - name: 5. Start Minikube
+    become: no
+    shell:
+      cmd: minikube Start
