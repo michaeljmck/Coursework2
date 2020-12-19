@@ -19,11 +19,11 @@
   - name: 3. Create Service
     become: no
     shell:
-      cmd: kubectl expose deployment/cw2deployment --"NodePort" --port 8080 --name np-service
+      cmd: kubectl expose deployment/cw2deployment --type="NodePort" --port 8080 --name np-service
 
   - name: 4. Scale Deployments
     become: no
     shell:
-      cmd: kubctl scale deployments/cw2deployment --replicas=4
+      cmd: kubectl scale deployments/cw2deployment --replicas=4
 
 
