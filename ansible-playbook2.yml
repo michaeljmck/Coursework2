@@ -28,4 +28,4 @@
   - name: 5. Start Minikube
     become: no
     shell:
-      cmd: minikube Start
+      cmd: minikube start
