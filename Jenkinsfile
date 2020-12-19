@@ -42,5 +42,13 @@ pipeline {
                 }
             }
         }
+
+        // stage('Deploy to Kubernetes') {
+        //     steps {
+        //         script {
+        //             sh "kubectl set image deployments/devops_cw2"
+        //         }
+        //     }
+        // }
     }
 }
