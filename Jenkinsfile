@@ -9,7 +9,7 @@ pipeline {
                 checkout scm
             }
         }
-/*
+
         stage('Build image') {
             steps {
                 script {
@@ -28,7 +28,7 @@ pipeline {
                 } 
             }
         }
-*/
+
         stage("SonarQube analysis") {
             environment {
                 scannerHome = tool 'SonarQube'
