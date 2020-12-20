@@ -48,7 +48,7 @@ pipeline {
                 script {
                     sh "ssh ubuntu@100.25.166.183 \
                        'kubectl set image deployment/cw2deployment \
-                       coursework2=michaejmckenna/coursework2:${env.BUILD_NUMBER}'"
+                       coursework2=michaeljmckenna/coursework2:${env.BUILD_NUMBER}'"
                 }
             }
         }
