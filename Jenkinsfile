@@ -47,8 +47,8 @@ pipeline {
             steps {
                 script {
                     sh "ssh ubuntu@100.25.166.183 \
-                        kubectl set image deployments/cw2deployment \
-                        cw2deployment=michaeljmckenna/coursework2:${env.BUILD_NUMBER}"
+                        'kubectl set image deployments/cw2deployment \
+                        cw2deployment=michaeljmckenna/coursework2:${env.BUILD_NUMBER}'"
                 }
             }
         }
