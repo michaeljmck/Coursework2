@@ -9,7 +9,7 @@ pipeline {
                 checkout scm
             }
         }
-/*
+
         stage('Build image') {
             steps {
                 script {
@@ -28,7 +28,7 @@ pipeline {
                 } 
             }
         }
-*/
+
         stage("SonarQube analysis") {
             environment {
                 scannerHome = tool 'SonarQube'
@@ -43,12 +43,14 @@ pipeline {
             }
         }
 
-        // stage('Deploy to Kubernetes') {
-        //     steps {
-        //         script {
-        //             sh "kubectl set image deployments/devops_cw2"
-        //         }
-        //     }
-        // }
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh "ssh ubuntu@100.25.166.183 \
+                        kubectl set image deployments/cw2deployment \
+                        cw2deployment=michaeljmckenna/coursework2:${env.BUILD_NUMBER}"
+                }
+            }
+        }
     }
 }
